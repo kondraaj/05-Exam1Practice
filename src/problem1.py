@@ -362,6 +362,6 @@ def problem1c(n):
 
 
 # ----------------------------------------------------------------------
-# Calls  main  to start the ball rolling
+# Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
 main()
