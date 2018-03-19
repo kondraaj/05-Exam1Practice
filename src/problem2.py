@@ -6,6 +6,7 @@ Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
+import math
 
 ########################################################################
 # Students:
@@ -101,8 +102,21 @@ def problem2a(circle, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window:    rg.RoseWindow
     """
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    point1 = rectangle.get_upper_right_corner()
+    point2 = rectangle.get_lower_left_corner()
+    line = rg.Line(point1, point2)
+    line.arrow = 'last'
+    line.attach_to(window)
+    circle.fill_color = rectangle.outline_color
+    circle.attach_to(window)
+    window.render()
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -110,6 +124,7 @@ def problem2a(circle, rectangle, window):
     #    DIFFICULTY:      6
     #    TIME ESTIMATE:   10 to 15 minutes.
     # ------------------------------------------------------------------
+
 
 def run_test_problem2b():
     """ Tests the  problem2b   function. """
@@ -172,8 +187,19 @@ def problem2b(rect, n, delta, win):
       :type delta:  int
       :type win:    rg.RoseWindow
     """
+    rect.attach_to(win)
+    point1 = rect.get_upper_left_corner()
+    point2 = rect.get_lower_right_corner()
+    for k in range(n - 1):
+        point1.x = point1.x - delta
+        point1.y = point1.y - delta
+        point2.x = point2.x + delta
+        point2.y = point2.y + delta
+        rectangle = rg.Rectangle(point1, point2)
+        rectangle.attach_to(win)
+    win.render()
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
