@@ -37,7 +37,7 @@ def main():
 def run_test_problem3a():
     """ Tests the   problem3a   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   5   ** tests (we wrote four for you).
     # ------------------------------------------------------------------
@@ -136,8 +136,27 @@ def problem3a(window, point, n):
         :type point:  rg.Point
         :type n:      int
     """
+    point2 = rg.Point(point.x, point.y + 50)
+    line = rg.Line(point, point2)
+    pthick = line.thickness
+    line.attach_to(window)
+    total = 0
+    for k in range(n):
+        point.x = point.x + 20
+        point.y = point.y + 10
+        point2 = rg.Point(point.x, point.y + 50)
+        line1 = rg.Line(point, point2)
+        if pthick < 13:
+            line1.thickness = pthick + 2
+        else:
+            line1.thickness = 13
+        line1.attach_to(window)
+        total = total + pthick
+        pthick = line1.thickness
+    window.render()
+    return total
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -200,8 +219,22 @@ def problem3b(m, point1):
         :type m:      int
         :type point1: rg.Point
     """
+    window = rg.RoseWindow(400, 650)
+    start = 3
+    total = 0
+    x1 = point1.x
+    y1 = point1.y
+    for k in range(m):
+        thick = problem3a(window, point1, start)
+        total = total + thick
+        start = start + 2
+        point1.x = x1
+        y1 = y1 + 60
+        point1.y = y1
+    window.close_on_mouse_click()
+    return total
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################
@@ -218,4 +251,6 @@ def problem3b(m, point1):
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
+
+
 main()
